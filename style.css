@@ -173,6 +173,7 @@ p{
 
 .question:hover{
   color: var(--soft-red);
+  cursor: pointer;
 }
 
 /* dropdown end */
