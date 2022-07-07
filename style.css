@@ -158,22 +158,43 @@ p{
     margin-inline: auto;
 }
 
-.answer{
-    margin-top: .8rem;
-}
-
 .divider{
     border-top: 2px solid var(--light-grayish-blue);
     margin: 1rem 0;
 }
 
 .question{
-  transition: .2s ease-in; 
+  padding: 0 3rem 0 0;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;   
 }
 
-.question:hover{
+.question::after{
+  content: url(images/icon-arrow-down.svg);
+  position: absolute;
+  right: 1rem;
+  transition: transform .2s ease-in-out; 
+}
+
+.question.active::after{
+  transform: rotate(180deg);
+}
+
+.question p{
+  transition: .2s ease-in;
+}
+
+.question p:hover{
   color: var(--soft-red);
-  cursor: pointer;
+}
+
+.answer{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .2s ease-out, font-weight .2s ease-out;
 }
 
 /* dropdown end */

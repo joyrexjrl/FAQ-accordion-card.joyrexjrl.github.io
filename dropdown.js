@@ -1,19 +1,23 @@
-const question = document.querySelectorAll('.question');
-const answer = document.querySelectorAll('.answer');
-const hidden = document.querySelector('.hidden');
+const questions = document.querySelectorAll(".question");
 
-question.forEach(btn => {
-    btn.addEventListener('click', openQuestion);
-});
+questions.forEach(question => {
+    question.addEventListener("click", event => {
+        const currentlyActiveQuestion = document.querySelector(".question.active");
+        if(currentlyActiveQuestion && currentlyActiveQuestion!==question){
+            currentlyActiveQuestion.classList.toggle("active");
+            currentlyActiveQuestion.nextElementSibling.style.maxHeight = 0;
+            currentlyActiveQuestion.style.fontWeight = "normal";
+        }
 
-function openQuestion() { 
-    answer.forEach(btn => {
-        btn.classList.add('hidden');
+        question.classList.toggle("active");
+        const answer = question.nextElementSibling;
+        const bold = question;
+        if(question.classList.contains("active")) {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            bold.style.fontWeight = 700;
+        }else{
+            answer.style.maxHeight = 0;
+            bold.style.fontWeight = "normal";
+        }
     });
-
-    if(event.target.classList.contains('hidden')){
-        answer.classList.remove('hidden');
-    }else{
-        event.target.parentNode.classList.add('active');
-    }
-}
+});
